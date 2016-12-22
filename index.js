@@ -8,7 +8,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/tone', function(req, res){
-  res.sendFile(__dirname + '/tone.mp3');
+   res.sendFile(__dirname + '/tone.mp3');
 });
 
 
