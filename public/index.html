@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <title>Socket.IO chat</title>
+  <!-- Compiled and minified CSS -->
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <header>
+
+    <!-- User Dropdown -->
+      <ul id="dropdown1" class="dropdown-content">
+      </ul>
+
+    <!-- Navbar Menu -->
+    <div class="navbar-fixed teal lighten-1">
+       <nav>
+         <div class="nav-wrapper teal lighten-1">
+           <a href="#!" class="brand-logo">Margarita Hot Chat v0.0.0.3</a>
+           <ul class="right hide-on-med-and-down">
+             <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">people</i>Users<span class="badge teal lighten-5">0</span></a></li>
+           </ul>
+         </div>
+       </nav>
+     </div>
+
+  </header>
+
+  <!-- Messages -->
+  <div id="messages"></div>
+
+  <!-- Messages form -->
+  <form action="" id="send">
+    <input id="m" autocomplete="off" placeholder="Type a message..."/><button class="btn waves-effect waves-light">Send</button>
+  </form>
+
+  <!-- Username Modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h5>Type your Username</h5>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Username" id="username" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close btn waves-effect waves-light">Accept</a>
+    </div>
+  </div>
+
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</html>

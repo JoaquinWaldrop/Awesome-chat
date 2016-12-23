@@ -1,15 +1,21 @@
 var app = require('express')();
 var http = require('http').Server(app);
+var express = require('express');
 var io = require('socket.io')(http);
+// Load the full build.
+var _ = require('lodash');
+
+// Routing
+app.use(express.static(__dirname + '/public'));
 
 
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/tone', function(req, res){
    res.sendFile(__dirname + '/tone.mp3');
-});
+});*/
 
 
 /*io.on('connection', function(socket){
@@ -25,9 +31,23 @@ app.get('/tone', function(req, res){
   });
 });*/
 
+var countUsers = 0;
+var users = [];
+
 io.on('connection', function(socket){
 
+  socket.emit('connected', users);
+
 	socket.on('user connected', function(msg){
+    var aux = {
+      id: countUsers,
+      username: msg.username
+    };
+
+    socket.idUser = countUsers;
+    socket.username = msg.username;
+    users.push(aux);
+    countUsers++;
     socket.broadcast.emit('user connected', msg);
   });
 
@@ -36,7 +56,13 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(){
-    socket.broadcast.emit('user disconnected', '');
+    var index = _.findIndex(users,{id:socket.idUser});
+    if(index !== -1)
+    {
+      _.pullAt(users, [index]);
+      socket.broadcast.emit('user disconnected', {username: socket.username, index: index});
+    }
+
   });
   
 });
